@@ -34,9 +34,33 @@ def take_seat(row, seat, seats_list):
         seats_list.pop(row - 1)
         seats_list.insert(row - 1, row_list)
 
+def get_seat_info():
+    seat = input("Input seat number (row seat): ")
+    temp = seat.split()
+    temp_row = int(temp[0])
+    temp_seat = temp[1]
+    return temp_row, temp_seat
 
-def cheek_seat():
-    pass
+def cheek_seat(row, seat, seats_list):
+
+    x = False
+    if row > len(seats_list):
+        print("Seat number is invalid!")
+    elif ord(seat) - 64 > len(seats_list[row - 1]):
+        print("Seat number is invalid!")
+    elif seat not in seats_list[row - 1]:
+        print("That seat is taken!")
+    else:
+        x = True
+    return x 
+
+def get_seat_taken(SEATS_LIST):
+    while True:
+        row_number, seat_letter = get_seat_info()
+        if cheek_seat(row_number, seat_letter, SEATS_LIST):
+            take_seat(row_number, seat_letter, SEATS_LIST)
+            print_airline_seats(SEATS_LIST)
+            break
 
 # Main Program
 
@@ -47,11 +71,11 @@ SEATS_LIST = make_airline_seats(ROWS, N_SEATS)
 
 print_airline_seats(SEATS_LIST)
 
-seat = input("Input seat number (row seat): ")
-temp = seat.split()
-temp_row = int(temp[0])
-temp_seat = temp[1]
+get_seat_taken(SEATS_LIST)
 
-take_seat(temp_row, temp_seat, SEATS_LIST)
-
-print_airline_seats(SEATS_LIST)
+while True:
+    x = input("More sets (y/n)? ")
+    if x == 'y':
+        get_seat_taken(SEATS_LIST)
+    else:
+        break
