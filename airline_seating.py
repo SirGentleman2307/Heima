@@ -34,7 +34,6 @@ def take_seat(row, seat, seats_list):
         seats_list.pop(row - 1)
         seats_list.insert(row - 1, row_list)
 
-
 def cheek_seat():
     pass
 
