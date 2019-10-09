@@ -46,11 +46,11 @@ SEATS_LIST = make_airline_seats(ROWS, N_SEATS)
 
 print_airline_seats(SEATS_LIST)
 
-seat = input("Input seat number (row seat): ")
-temp = seat.split()
-temp_row = int(temp[0])
-temp_seat = temp[1]
+get_seat_taken(SEATS_LIST)
 
-take_seat(temp_row, temp_seat, SEATS_LIST)
-
-print_airline_seats(SEATS_LIST)
+while True:
+    x = input("More sets (y/n)? ")
+    if x == 'y':
+        get_seat_taken(SEATS_LIST)
+    else:
+        break
