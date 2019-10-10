@@ -1,81 +1,124 @@
+def make_seats_list(letters_list = []):
+    '''Input: number of rows and seats
+    Output: A list containing letters'''
 
-def make_airline_seats(rows, n_seats, letters_list = [], seats_list = []):
+    ROWS = int(input('Enter number of rows: '))
+    N_SEATS = int(input('Enter number of seats in each row: '))
 
-    for i in range(n_seats):
-        letters_list.append(chr(i+65))
+    for i in range(N_SEATS):
+        letters_list.append(chr(i + 65))
 
-    for j in range(rows):
-        seats_list.append(letters_list)
+    return [letters_list] * ROWS
 
-    return seats_list
+def show_seats(seat_list, FIRST_STR = '', SECOND_STR = ''):
+    '''Input: list of seats
+    Output: prints out all seat'''
 
-def print_airline_seats(seats_list):
+    MID = int(len(seat_list[0])/2)
+    for i in range(len(seat_list)):
+        ROW = seat_list[i]
 
-    LENGTH = len(seats_list[0])
+        for letter in ROW[:MID]:                # First half of letters
+            FIRST_STR += letter + ' '
 
-    for i in range(len(seats_list)):
-        print("{0:2}".format(i + 1), end='   ')
-        for j in range(len(seats_list[i])):
-            if j < LENGTH/2:
-                print("{}".format(seats_list[i][j]),end=" ")
-            elif j == LENGTH/2:
-                print("  {}".format(seats_list[i][j]), end=" ")
-            elif j == LENGTH - 1:
-                print("{}".format(seats_list[i][j]))
-            else:
-                print("{}".format(seats_list[i][j]), end=" ")
+        for letter in ROW[MID:]:                # Scond half of letters
+            SECOND_STR += letter + ' '
 
-def take_seat(row, seat, seats_list):
-    row_list = seats_list[row - 1].copy()
-    if seat in row_list:
-        index_seat = row_list.index(seat)
-        row_list.remove(seat)
-        row_list.insert(index_seat, 'X')
-        seats_list.pop(row - 1)
-        seats_list.insert(row - 1, row_list)
+        print('{0:2}   {1}   {2}'.format(i + 1,
+         FIRST_STR, SECOND_STR))
+
+        FIRST_STR, SECOND_STR = '', ''
+
+def mark_seat_taken(row, seat, seat_list):
+    '''Input: row number, seat letter and list of seats
+    Output: replace the seat letter with an X'''
+
+    CURRENT_ROW = row - 1
+    row_list = seat_list[CURRENT_ROW].copy()    # Make a copy to edit
+
+    INDEX_SEAT = row_list.index(seat)
+
+    row_list.remove(seat)                       # Replace seat letter with an X
+    row_list.insert(INDEX_SEAT, 'X')
+
+    seat_list.pop(CURRENT_ROW)                  # Replace old row with new row
+    seat_list.insert(CURRENT_ROW, row_list)
 
 def get_seat_info():
-    seat = input("Input seat number (row seat): ")
-    temp = seat.split()
-    temp_row = int(temp[0])
-    temp_seat = temp[1]
-    return temp_row, temp_seat
+    '''Input: gets row number and seat letter from user
+    Output: tuple containing the row number and seat letter'''
 
-def cheek_seat(row, seat, seats_list):
+    number_letter = input("Input seat number (row seat): ").split()
 
-    x = False
-    if row > len(seats_list):
+    row_number = number_letter[0]
+    seat_letter = number_letter[1]
+
+    return row_number, seat_letter
+
+def check_seat(row, seat, seat_list):
+    '''Input: row number, seat letter and list of seats
+    Output: True if user inputs a seat that can be taken,
+     else Fales and prints out a error'''
+
+    status = False
+    try:                                                    # Test: If seat is a int that is an error
+        int(seat)
         print("Seat number is invalid!")
-    elif ord(seat) - 64 > len(seats_list[row - 1]):
-        print("Seat number is invalid!")
-    elif seat not in seats_list[row - 1]:
-        print("That seat is taken!")
-    else:
-        x = True
-    return x 
+    except ValueError:
+        try:                                                # Test: If row is an int, continue testing
+            row = int(row)
 
-def get_seat_taken(SEATS_LIST):
+            if row > len(seat_list) or row == 0:            # Test: If row is bigger then ROWS in list or row = 0, error
+                print("Seat number is invalid!")
+            elif len(seat) > 1:                             # Test: If seat is more then 2 letters, error
+                print("Seat number is invalid!")
+            elif ord(seat) - 64 > len(seat_list[row - 1]):  # Test: See if seat letter is in range of letters used in list, error
+                print("Seat number is invalid!")
+            elif seat not in seat_list[row - 1]:            # Test: If seat is not in row, then we know it is taken
+                print("That seat is taken!")
+            else:                                           # If seat and row are valid return True
+                status = True
+
+        except ValueError:
+            print("Seat number is invalid!")
+
+    return status
+
+def main_function(seat_list):
+    '''Input: list of seats
+    Output: Marks a seat as taken and shows all seats'''
+
     while True:
-        row_number, seat_letter = get_seat_info()
-        if cheek_seat(row_number, seat_letter, SEATS_LIST):
-            take_seat(row_number, seat_letter, SEATS_LIST)
-            print_airline_seats(SEATS_LIST)
+        row_number, seat_letter = get_seat_info()                       # Function call: get_seat_info
+        if check_seat(row_number, seat_letter, seat_list):              # Function call: check_seat
+            mark_seat_taken(int(row_number), seat_letter, seat_list)    # Function call: mark_seat_taken
+            show_seats(seat_list)                                       # Function call: show_seats
             break
+
+def check_if_full(seat_list):
+    '''Input: list of seats
+    Output: if list is all X return True, else False'''
+
+    for i in range(len(seat_list)):
+        for j in seat_list[i]:
+            if j != 'X':
+                return False
+    return True
 
 # Main Program
 
-ROWS = int(input("Enter number of rows: "))
-N_SEATS = int(input("Enter number of seats in each row: "))
+SEAT_LIST = make_seats_list()               # Make list of seats
+show_seats(SEAT_LIST)                       # Print list
 
-SEATS_LIST = make_airline_seats(ROWS, N_SEATS)
-
-print_airline_seats(SEATS_LIST)
-
-get_seat_taken(SEATS_LIST)
+main_function(SEAT_LIST)
 
 while True:
-    x = input("More sets (y/n)? ")
-    if x == 'y':
-        get_seat_taken(SEATS_LIST)
+
+    if check_if_full(SEAT_LIST):
+        break
+
+    answer = input("More seats (y/n)? ")
+    if answer == 'y':
+        main_function(SEAT_LIST)
     else:
         break
