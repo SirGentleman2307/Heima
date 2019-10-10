@@ -27,7 +27,7 @@ def show_seats(seat_list):
                 if j == 1:                                  # Special case for row = 2, need to start a new line
                     print()
             elif j == LENGTH - 1:                           # Last letter
-                print('{}'.format(CURRENT_SEAT))
+                print('{} '.format(CURRENT_SEAT))
             else:                                           # The second halv of letters
                 print('{}'.format(CURRENT_SEAT), end=' ')
 
@@ -98,6 +98,16 @@ def main_function(seat_list):
             show_seats(seat_list)                                       # Function call: show_seats
             break
 
+def check_if_full(seat_list):
+    '''Input: list of seats
+    Output: if list is all X return True, else False'''
+
+    for i in range(len(seat_list)):
+        for j in seat_list[i]:
+            if j != 'X':
+                return False
+    return True
+
 # Main Program
 
 ROWS = int(input('Enter number of rows: '))
@@ -109,7 +119,11 @@ show_seats(SEAT_LIST)                                       # Print list
 main_function(SEAT_LIST)
 
 while True:
-    answer = input("More sets (y/n)? ")
+
+    if check_if_full(SEAT_LIST):
+        break
+
+    answer = input("More seats (y/n)? ")
     if answer == 'y':
         main_function(SEAT_LIST)
     else:
