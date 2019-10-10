@@ -14,7 +14,7 @@ def print_airline_seats(seats_list):
     LENGTH = len(seats_list[0])
 
     for i in range(len(seats_list)):
-        print(" {}".format(i + 1), end='   ')
+        print("{0:2}".format(i + 1), end='   ')
         for j in range(len(seats_list[i])):
             if j < LENGTH/2:
                 print("{}".format(seats_list[i][j]),end=" ")
