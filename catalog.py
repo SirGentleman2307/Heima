@@ -20,7 +20,7 @@ class Catalog():
         self.list = list()
 
     def set_name(self, name = ''):
-        self.__name = name
+        self.name = name
 
     def add(self, item = ''):
         self.list.append(item.__str__())
