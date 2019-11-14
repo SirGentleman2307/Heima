@@ -1,7 +1,7 @@
-max_int = int(input("Enter end of series: "))
+lst = [[1, 2], [3, 4], [5, 6]]
+for i in range(len(lst)):
+    print('\n'.join('{}: {}'.format(*k) for k in enumerate(lst[i],1)))
 
-the_sum = 0
-for i in range(1,max_int):
-    the_sum += i
+lst2 = lst.copy()
 
-print("The sum is",the_sum)
+print(lst2)
