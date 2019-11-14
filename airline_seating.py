@@ -1,35 +1,33 @@
-
-def make_seats_list(rows, n_seats, letters_list = []):
+def make_seats_list(letters_list = []):
     '''Input: number of rows and seats
     Output: A list containing letters'''
 
-    for i in range(n_seats):
+    ROWS = int(input('Enter number of rows: '))
+    N_SEATS = int(input('Enter number of seats in each row: '))
+
+    for i in range(N_SEATS):
         letters_list.append(chr(i + 65))
 
-    return [letters_list] * rows
+    return [letters_list] * ROWS
 
-def show_seats(seat_list):
+def show_seats(seat_list, FIRST_STR = '', SECOND_STR = ''):
     '''Input: list of seats
     Output: prints out all seat'''
 
-    LENGTH = len(seat_list[0])
+    MID = int(len(seat_list[0])/2)
+    for i in range(len(seat_list)):
+        ROW = seat_list[i]
 
-    for i in range(len(seat_list)):                         # Iterate for each row
-        print('{0:2}'.format(i + 1), end='   ')
+        for letter in ROW[:MID]:                # First half of letters
+            FIRST_STR += letter + ' '
 
-        for j in range(len(seat_list[i])):                  # Iterate for each letter in list
-            CURRENT_SEAT = seat_list[i][j]
+        for letter in ROW[MID:]:                # Scond half of letters
+            SECOND_STR += letter + ' '
 
-            if j < LENGTH/2:                                # The first halv of the letters
-                print('{}'.format(CURRENT_SEAT), end=' ')
-            elif j == LENGTH/2:                             # The letter in the middle
-                print('  {}'.format(CURRENT_SEAT), end=' ')
-                if j == 1:                                  # Special case for row = 2, need to start a new line
-                    print()
-            elif j == LENGTH - 1:                           # Last letter
-                print('{} '.format(CURRENT_SEAT))
-            else:                                           # The second halv of letters
-                print('{}'.format(CURRENT_SEAT), end=' ')
+        print('{0:2}   {1}   {2}'.format(i + 1,
+         FIRST_STR, SECOND_STR))
+
+        FIRST_STR, SECOND_STR = '', ''
 
 def mark_seat_taken(row, seat, seat_list):
     '''Input: row number, seat letter and list of seats
@@ -50,11 +48,10 @@ def get_seat_info():
     '''Input: gets row number and seat letter from user
     Output: tuple containing the row number and seat letter'''
 
-    number_letter = input("Input seat number (row seat): ")
+    number_letter = input("Input seat number (row seat): ").split()
 
-    number_letter_list = number_letter.split()
-    row_number = number_letter_list[0]
-    seat_letter = number_letter_list[1]
+    row_number = number_letter[0]
+    seat_letter = number_letter[1]
 
     return row_number, seat_letter
 
@@ -110,11 +107,8 @@ def check_if_full(seat_list):
 
 # Main Program
 
-ROWS = int(input('Enter number of rows: '))
-N_SEATS = int(input('Enter number of seats in each row: '))
-
-SEAT_LIST = make_seats_list(ROWS, N_SEATS)                  # Make list of seats
-show_seats(SEAT_LIST)                                       # Print list
+SEAT_LIST = make_seats_list()               # Make list of seats
+show_seats(SEAT_LIST)                       # Print list
 
 main_function(SEAT_LIST)
 
