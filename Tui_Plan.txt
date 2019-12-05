@@ -1,0 +1,57 @@
+TUI:
+Main\
+	Quit -> Close program|
+	Create\
+		Pilot
+		Flight attendant
+		Voyage
+		Destination
+		Airplane
+		Flight
+	Edit\
+		Main Menu -> Go to Main|
+		Pilot\
+			Shows a list Pilots\
+				Show chosen Pilot\
+					Main Menu -> Go to Main|
+					Address -> Edit Address|
+					Email -> Edit Email|
+					Mobile -> Edit Mobile|
+					Landline -> Edit Landline|
+					Airplane -> Edit Airplane|
+		Flight attendant\
+			Shows a list Flight attendant\
+				Show chosen Flight attendant\
+					Main Menu -> Go to Main|
+					Address -> Edit Address|
+					Email -> Edit Email|
+					Mobile -> Edit Mobile|
+					Landline -> Edit Landline|
+		Voyage\
+			Shows a list Voyage\
+				Show chosen Voyage\
+					Main Menu -> Go to Main|
+					(Blank) -> Edit (Blank)|
+		Airplane\
+			Shows a list Airplane\
+				Show chosen Airplane\
+					Main Menu -> Go to Main|
+					(Blank) -> Edit (Blank)|
+	View\
+		Main Menu -> Go to Main|
+		Employees working\
+			Shows a list Employees working\
+				Main Menu -> Go to Main|
+				"Add Filter"
+		Employess NOt working\
+			Shows a list Employees NOT working\
+				Main Menu -> Go to Main|
+				"Add Filter"
+		NaN Airplanes\
+			Shows a list NaN Airplanes\
+				Main Menu -> Go to Main|
+				"Add Filter"
+		Destinations\
+			Shows a list Destinations\
+				Main Menu -> Go to Main|
+				"Add Filter"
