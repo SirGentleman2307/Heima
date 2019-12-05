@@ -1,7 +1,7 @@
-# Main Menu
+# View Menu
 
 
-class MainMenu():
+class ViewMenu():
 
     def __init__(self, input_tuple):
         self.__header_str, self.__optinons_list = input_tuple
@@ -27,7 +27,7 @@ class MainMenu():
             self.display()
             user_input_int = self.get_input()
 
-            if user_input_int == 'Invalid' or user_input_int > 3 or user_input_int < 0:
+            if user_input_int == 'Invalid':
                 print('Please enter a number that coresponds to an option')
                 continue
 
@@ -36,17 +36,16 @@ class MainMenu():
     def run(self, command_int):
 
         if command_int == 0:
-            print('You picked Quit')
-            return 'Quit'
+            print('You picked Main Menu')
 
         if command_int == 1:
-            print('You picked Create')
-            return 'Create'
+            print('You picked Employess working')
 
         if command_int == 2:
-            print('You picked Edit')
-            return 'Edit'
+            print('You picked Employess NOT working')
 
         if command_int == 3:
-            print('You picked View')
-            return 'View'
+            print('You picked Airplanes')
+
+        if command_int == 4:
+            print('You picked Destinations')

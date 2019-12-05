@@ -1,33 +1,34 @@
 # Main Ui class
 from main_rewrite import MainMenu
+from create_rewrite import CreateMenu
+from edit_rewrite import EditMenu
+from view_rewrite import ViewMenu
 
 class Tui():
 
     def __init__(self):
-        # self.__Create = Create(('Create Menu', ['Main Menu','Pilot','Flight attendant','Voyage','Destination','Airplane','Flight']))
-        # self.__Edit = Edit(('Edit Menu', ['Main Menu','Pilot','Flight attendant','Voyage','Airplane']))
-        # self.__View = View(('View Menu', ['Main Menu','Employees working','Employees NOT working','NaN airplanes','Destinations']))
+        self.__CreateMenu = CreateMenu(('Create Menu', ['Main Menu','Pilot','Flight Attendant','Voyage','Destination','Airplane','Flight']))
+        self.__EditMenu = EditMenu(('Edit Menu', ['Main Menu','Pilot','Flight attendant','Voyage','Airplane']))
+        self.__ViewMenu = ViewMenu(('View Menu', ['Main Menu','Employees working','Employees NOT working','NaN airplanes','Destinations']))
         self.__MainMenu = MainMenu(("Welcome to NaN Air", ["Quit", "Create", "Edit", "View"]))
 
     def start_up(self):
 
-        user_input_int = True
-        while user_input_int:
-            self.__MainMenu.display()
-            user_input_int = self.get_input()
+        while True:
+            command_str = self.__MainMenu.start_up()
 
-            if user_input_int == 'Invalid' or user_input_int > 3 or user_input_int < 0:
-                print('Please enter a number that coresponds to an option')
-                continue
-            comand_tui_int = self.__MainMenu.run(user_input_int)
-            self.run(comand_tui_int)
+            if command_str == 'Quit':
+                print('---Program Closed---')
+                break
 
-    def get_input(self):
-        try:
-            user_input = int(input("Please choose what you would like to do: "))
-        except ValueError:
-            user_input = 'Invalid'
-        return user_input
+            if command_str == 'Create':
+                self.__CreateMenu.start_up()
+
+            if command_str == 'Edit':
+                self.__EditMenu.start_up()
+
+            if command_str == 'View':
+                self.__ViewMenu.start_up()
 
 
 NaNAir = Tui()
