@@ -37,21 +37,28 @@ class CreateMenu():
 
         if command_int == 0:
             print('You picked Main Menu')
+            return None
 
         if command_int == 1:
             print('You picked Pilot')
+            return self.__creator.run('Pilot')
 
         if command_int == 2:
             print('You picked Flight Attendant')
+            return 'Flight Attendant'
 
         if command_int == 3:
             print('You picked Voyage')
+            return 'Voyage'
 
         if command_int == 4:
             print('You picked Destination')
+            return 'Destination'
 
         if command_int == 5:
             print('You picked Airplane')
+            return 'Airplane'
 
         if command_int == 6:
             print('You picked Flight')
+            return 'Flight'

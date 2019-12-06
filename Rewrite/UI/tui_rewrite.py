@@ -1,8 +1,8 @@
 # Main Ui class
-from main_rewrite import MainMenu
-from create_rewrite import CreateMenu
-from edit_rewrite import EditMenu
-from view_rewrite import ViewMenu
+from Ui.main_rewrite import MainMenu
+from Ui.create_rewrite import CreateMenu
+from Ui.edit_rewrite import EditMenu
+from Ui.view_rewrite import ViewMenu
 
 class Tui():
 
@@ -22,14 +22,11 @@ class Tui():
                 break
 
             if command_str == 'Create':
-                self.__CreateMenu.start_up()
+                obj_class = self.__CreateMenu.start_up()
+                print('Creating {}'.format(obj_class))
 
             if command_str == 'Edit':
                 self.__EditMenu.start_up()
 
             if command_str == 'View':
                 self.__ViewMenu.start_up()
-
-
-NaNAir = Tui()
-NaNAir.start_up()

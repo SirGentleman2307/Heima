@@ -1,0 +1,9 @@
+Here we save all Data script
+
+Variable Name Formmat:
+Description_Type
+All characters lower case
+
+Example: date_str
+
+file dictionaries eru á eftirfarandi formatti: [(header, value)]
