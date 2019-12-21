@@ -1,8 +1,10 @@
-TUI:
+TUI: --- Logic: --- Data:
+|
+|
 Main\
 	Quit -> Close program|
 	Create\
-		Pilot
+		Pilot -> Go create pilot|
 		Flight attendant
 		Voyage
 		Destination
@@ -40,6 +42,9 @@ Main\
 	View\
 		Main Menu -> Go to Main|
 		Employees working\
+				Pick staff\
+				Date\
+				
 			Shows a list Employees working\
 				Main Menu -> Go to Main|
 				"Add Filter"
