@@ -1,4 +1,3 @@
-Nice = ['Pilot', 'Crew Member', 'Airplane', 'Destination', 'Voyage']
+k = (0, 4)
 
-Nice.sort()
-print(Nice)
+print(k[1])

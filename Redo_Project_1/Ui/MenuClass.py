@@ -8,6 +8,7 @@ class Menu():
         self.__list = options_list
         self.__list.append(last_op_str)
         self.__options = self.list_options()
+        self.tuple = self.tuple_maker()
 
     def header_maker(self):
         '''Makes a String that is the Header for the menu (tui)'''
@@ -23,6 +24,10 @@ class Menu():
         OUT_str += '\n  0. {}'.format(self.__list[-1])
         return OUT_str
 
+    def tuple_maker(self):
+        '''Makes a tuple for the UI'''
+        return 0, len(self.__list) - 1
+
     def display(self):
         '''Used by the tui to display a menu'''
         print(self.__header + self.__options)
@@ -34,8 +39,3 @@ class Menu():
 
         return self.__list[input_int - 1]
 
-# Thing = Menu(' Welcome to NaN-Air ', ['Create', 'Edit', 'View', 'Remove'], 'Quit')
-# Thing.display()
-# # Thing2 = Menu()
-# # Thing2.display()
-# print(Thing.give_input(int(input('Enter in a number: '))))
