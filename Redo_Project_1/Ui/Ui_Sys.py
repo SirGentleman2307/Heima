@@ -9,7 +9,6 @@ class System():
         self.__EditMenu = Menu(' Edit Menu ', ['Airplane', 'Crew Member', 'Destination', 'Pilot', 'Voyage'])
         self.__ViewMenu = Menu(' View Menu ', ['Airplane', 'Crew Member', 'Destination', 'Pilot', 'Voyage'])
 
-
     def start_up(self):
         '''Starts up the system'''
         self.__MainMenu.display()
