@@ -2,7 +2,7 @@ import csv
 import os
 import datetime
 
-class Data():
+class System_DATA():
 
     def __init__(self):
 
@@ -39,7 +39,7 @@ class Data():
 
 if __name__ == "__main__":
 
-    Worker = Data()
-    Worker.save_on_file('1;2;3;4;5;6;7;8;9;10;11','AircraftType.csv')
-    data_list = Worker.read_file('AircraftType.csv')
+    Worker = System_DATA()
+    Worker.save_on_file('1;2;3;4;5;6;7;8;9;10;11','Flight.csv')
+    data_list = Worker.read_file('Flight.csv')
     print(data_list)
